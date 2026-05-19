@@ -125,3 +125,75 @@ git push
 - **Host:** Vercel (PAAD team, Pro Trial)
 - **DNS:** A record `@` → `76.76.21.21` · CNAME `www` → `cname.vercel-dns.com`
 - **Email:** hello@hafomedical.com (to be set up via Google Workspace)
+
+---
+
+# Hafo Medical — Claude Code Standing Brief
+
+## Brand & colour palette
+All UI work must use the golden warm palette — never the old teal/green.
+
+| Token        | Hex       | Use                          |
+|--------------|-----------|------------------------------|
+| --midnight   | #2C1E00   | Dark backgrounds, banners    |
+| --espresso   | #3D2B00   | Cards, panels, secondary bg  |
+| --gold       | #C8880A   | Primary brand, borders, CTAs |
+| --amber      | #E5A120   | Secondary accent             |
+| --honey      | #F2C45A   | Headings on dark             |
+| --cream      | #FDF3DC   | Light background             |
+| --parchment  | #F5E6C0   | Card backgrounds             |
+| --sand       | #E8D49A   | Dividers, subtle borders     |
+| --charcoal   | #2C2010   | Body text on light           |
+
+Never use teal (#085041, #1D9E75, #5DCAA5) or green anywhere.
+
+## PMS independence messaging — CRITICAL
+The site currently has zero mention of practice management software
+compatibility. This is our biggest sales objection gap. Every relevant
+section should communicate: Hafo works alongside existing clinic software,
+no migration required.
+
+### The four compatible systems
+| System        | Market          | Method                        | Status          |
+|---------------|-----------------|-------------------------------|-----------------|
+| Open Dental   | USA             | MySQL read + REST write-back  | Live production |
+| Plato Medical | Singapore / APAC| PlatoConnect REST API         | Integration planned |
+| Dentrix       | USA             | Dentrix API / HL7 FHIR        | Roadmap Q3 2026 |
+| Eaglesoft     | USA             | API / ODBC bridge             | Roadmap Q4 2026 |
+
+Plato Medical context: platomedical.com — most widely adopted web-based
+clinic software in Singapore, 4,000+ providers across SG/AU/APAC.
+Integrates via PlatoConnect developer API (no direct DB access needed).
+
+### Key copy lines to use verbatim or adapt
+- Hero trust line: "Works alongside Open Dental, Plato Medical, Dentrix,
+  Eaglesoft and more — zero migration required."
+- Workflows card bullet: "Works alongside your existing PMS — Open Dental,
+  Plato Medical, Dentrix, Eaglesoft and more. No migration required."
+- Mission addition: "Our platform deploys alongside your existing practice
+  management software — no replacement, no rip-and-replace."
+- New section headline: "Works with your existing clinic software"
+- New section body: "Hafo is practice management software agnostic. Our
+  lightweight sync agent deploys alongside your existing system — no
+  migration, no rip-and-replace, no retraining your team."
+
+## Architecture facts (for tech section)
+- Hafo Sync Agent: lightweight background service (Python/C# .NET 8)
+- Reads from clinic PMS, anonymises PII before anything crosses to GCP
+- Publishes anonymised events to Cloud Pub/Sub
+- All AI runs on GCP: Vertex AI, MedLM, BigQuery, Cloud Run
+- Results written back into the clinic's existing PMS via its native API
+- Raw patient data NEVER leaves the clinic premise (PDPA + HIPAA)
+
+## Sections that need updating (priority order)
+1. Hero — add PMS trust line below subheading
+2. Smart Practice Workflows card — add PMS compatibility bullet
+3. Technical Architecture — add "Works with your existing software" subsection
+4. About/Mission — add one sentence on non-replacement positioning
+5. Footer badge strip — add "PMS Independent" badge
+
+## Tone
+- Confident, technical, precise — not salesy
+- Stress independence and non-disruption over features
+- Singapore clinic audience: name Plato Medical specifically
+- US clinic audience: name Open Dental and Dentrix specifically
