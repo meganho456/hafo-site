@@ -77,3 +77,7 @@ git push
 - **Host:** Vercel (PAAD team, Pro Trial)
 - **DNS:** A record `@` → `76.76.21.21` · CNAME `www` → `cname.vercel-dns.com`
 - **Email:** hello@hafomedical.com (to be set up via Google Workspace)
+
+## Extended context files
+- context/architecture_spec.md — full sync agent technical spec
+- context/pms_compatibility.md — full PMS integration details and Plato note
